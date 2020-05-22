@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.zebra.jamesswinton.datawedgewrapperlib.DataWedgeWrapper;
 import com.zebra.jamesswinton.datawedgewrapperlib.configuration.MainBundle;
 import com.zebra.jamesswinton.datawedgewrapperlib.configuration.plugins.BDFPlugin;
+import com.zebra.jamesswinton.datawedgewrapperlib.configuration.plugins.BarcodePlugin;
 import com.zebra.jamesswinton.datawedgewrapperlib.configuration.plugins.KeystrokePlugin;
 import com.zebra.jamesswinton.datawedgewrapperlib.interfaces.OnLastResultIntentListener;
 import com.zebra.jamesswinton.datawedgewrapperlib.utilities.Constants;
@@ -23,7 +24,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Create Plugin Bundles
+        // Create Barcode Plugin
+        Bundle barcodeBundle = new BarcodePlugin.Builder()
+                .setEnabled(true)
+                .setScannerIdentifier(BarcodePlugin.ScannerIdentifier.AUTO)
+                .setDecodeHapticFeedback(true)
+                .create();
+
+        // Create Keystroke Plugin
         Bundle keyStrokePlugin = new KeystrokePlugin.Builder()
                 .resetConfig(true)
                 .setEnabled(true)
@@ -35,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 .setOutputPluginName(Constants.OutputPluginName.KEYSTROKE)
                 .setEnabled(true)
                 .sendEnter(true)
+                .sendData(true)
                 .create();
 
         // Create Main Bundle
@@ -44,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 .setConfigMode(Constants.ConfigMode.CREATE_IF_NOT_EXIST)
                 .addPluginBundle(bdfPlugin)
                 .addPluginBundle(keyStrokePlugin)
+                .addPluginBundle(barcodeBundle)
                 .create();
 
         // Send Intent With Result
