@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Create Keystroke Plugin
         Bundle keyStrokePlugin = new KeystrokePlugin.Builder()
-                .resetConfig(true)
                 .setEnabled(true)
+                .setCharacterDelay(10)
                 .create();
 
         // Create BDF Plugin
