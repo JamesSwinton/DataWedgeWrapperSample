@@ -10,6 +10,7 @@ import com.zebra.jamesswinton.datawedgewrapperlib.DataWedgeWrapper;
 import com.zebra.jamesswinton.datawedgewrapperlib.configuration.MainBundle;
 import com.zebra.jamesswinton.datawedgewrapperlib.configuration.plugins.BDFPlugin;
 import com.zebra.jamesswinton.datawedgewrapperlib.configuration.plugins.BarcodePlugin;
+import com.zebra.jamesswinton.datawedgewrapperlib.configuration.plugins.BarcodePlugin.ScannerIlluminationMode;
 import com.zebra.jamesswinton.datawedgewrapperlib.configuration.plugins.KeystrokePlugin;
 import com.zebra.jamesswinton.datawedgewrapperlib.interfaces.OnLastResultIntentListener;
 import com.zebra.jamesswinton.datawedgewrapperlib.utilities.Constants;
@@ -29,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
                 .setEnabled(true)
                 .setScannerIdentifier(BarcodePlugin.ScannerIdentifier.AUTO)
                 .setDecodeHapticFeedback(true)
+                .setScannerIlluminationBrightness(10)
+                .setScannerIlluminationMode(ScannerIlluminationMode.TORCH)
                 .create();
 
         // Create Keystroke Plugin
         Bundle keyStrokePlugin = new KeystrokePlugin.Builder()
                 .setEnabled(true)
-                .setCharacterDelay(10)
+                .setCharacterDelay(20)
                 .create();
 
         // Create BDF Plugin
