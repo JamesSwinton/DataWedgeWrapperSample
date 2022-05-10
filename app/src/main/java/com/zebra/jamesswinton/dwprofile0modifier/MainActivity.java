@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDecodeHapticFeedback(true)
                 .setScannerIlluminationBrightness(10)
                 .setScannerIlluminationMode(ScannerIlluminationMode.TORCH)
+                .setReaderAimType(BarcodePlugin.ReaderAimType.PRESENTATION)
                 .create();
 
         // Create Keystroke Plugin
